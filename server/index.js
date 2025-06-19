@@ -23,7 +23,7 @@ app.use(express.json());
 const createPollRouter = require('./routes/PollRoutes');
 app.use('/api/polls', createPollRouter(io)); // 👈 inject io here
 
-const chatRoutes = require('./routes/Chat');
+const chatRoutes = require('./routes/Char');
 
 app.use('/api/chat', chatRoutes);
 
