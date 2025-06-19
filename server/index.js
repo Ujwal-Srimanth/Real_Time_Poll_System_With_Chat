@@ -15,6 +15,8 @@ const io = socketIo(server, {
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  ssl: true, // ✅ ensure SSL/TLS is explicitly enabled
+  tlsAllowInvalidCertificates: false, // 🔒 for security, unless you're testing
 }).then(() => console.log("MongoDB connected"));
 
 app.use(cors());
