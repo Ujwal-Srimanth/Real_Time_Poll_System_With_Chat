@@ -8,7 +8,7 @@ const ChatBox = ({ username, participants = [], onKick }) => {
   const [activeTab, setActiveTab] = useState('chat'); // 'chat' | 'participants'
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/chat')
+    axios.get('https://real-time-poll-system-with-chat-1.onrender.com/api/chat')
       .then((res) => setChatLog(res.data))
       .catch((err) => console.error('Failed to fetch chat history:', err.message));
 

@@ -28,7 +28,7 @@ const StudentPoll = ({ poll, studentName, onAnswer }) => {
   const handleSubmit = async () => {
     if (selected !== null) {
       try {
-        await axios.post('http://localhost:5000/api/polls/answer', {
+        await axios.post('https://real-time-poll-system-with-chat-1.onrender.com/api/polls/answer', {
           pollId: poll._id,
           studentName,
           answer: poll.options[selected].text,

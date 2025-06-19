@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API = 'http://localhost:5000/api/polls';
+const API = 'https://real-time-poll-system-with-chat-1.onrender.com/api/polls';
 
 export const createPoll = createAsyncThunk('poll/create', async (payload) => {
   console.log(payload)
-  const response = await axios.post('http://localhost:5000/api/polls/create', payload);
+  const response = await axios.post('https://real-time-poll-system-with-chat-1.onrender.com/api/polls/create', payload);
   return response.data;
 });
 const pollSlice = createSlice({

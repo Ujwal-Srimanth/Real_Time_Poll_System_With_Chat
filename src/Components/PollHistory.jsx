@@ -7,7 +7,7 @@ const PollHistory = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/polls/history')
+    axios.get('https://real-time-poll-system-with-chat-1.onrender.com/api/polls/history')
       .then(res => setHistory(res.data))
       .catch(err => console.error(err));
   }, []);

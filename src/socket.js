@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
 // Connect to your backend server
-export const socket = io('http://localhost:5000', {
+export const socket = io('https://real-time-poll-system-with-chat-1.onrender.com', {
   transports: ['websocket'], // optional: ensures stable connection
 });

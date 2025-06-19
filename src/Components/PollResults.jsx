@@ -5,10 +5,15 @@ import { socket } from '../socket';
 
 const PollResults = ({ poll, username, handleNewQuestion }) => {
   const [participants, setParticipants] = useState([]);
-  socket.emit('getParticipants');
-  socket.on('participantList', (list) => setParticipants(list));
   const [showChat, setShowChat] = useState(false);
   const navigate = useNavigate();
+
+  // Fetch participants list
+  React.useEffect(() => {
+    socket.emit('getParticipants');
+    socket.on('participantList', (list) => setParticipants(list));
+    return () => socket.off('participantList');
+  }, []);
 
   const userResponse = poll.responses.find((r) => r.studentName === username)?.answer;
   const counts = poll.options.map(
@@ -70,10 +75,10 @@ const PollResults = ({ poll, username, handleNewQuestion }) => {
         {poll.options.map((opt, idx) => {
           const voteCount = counts[idx];
           const percentage = ((voteCount / (total || 1)) * 100).toFixed(1);
-
           const isCorrect = opt.correctAnswer;
-          const fillColor = isCorrect ? '#bbf7d0' : '#fecaca';  // green or red background
-          const barColor = isCorrect ? '#10b981' : '#ef4444';   // green or red fill
+          const isUserSelected = userResponse === opt.text;
+          const fillColor = isCorrect ? '#bbf7d0' : '#fecaca';  // green/red background
+          const barColor = isCorrect ? '#10b981' : '#ef4444';   // green/red fill
 
           return (
             <div key={idx} style={{
@@ -81,7 +86,9 @@ const PollResults = ({ poll, username, handleNewQuestion }) => {
               marginBottom: '16px',
               borderRadius: '10px',
               overflow: 'hidden',
-              border: '1px solid #e5e7eb',
+              border: isUserSelected && username !== 'Teacher'
+                ? '2px solid #6366f1'
+                : '1px solid #e5e7eb',
               height: '50px',
               backgroundColor: fillColor,
               display: 'flex',
@@ -89,7 +96,10 @@ const PollResults = ({ poll, username, handleNewQuestion }) => {
               padding: '0 16px',
               fontSize: '16px',
               fontWeight: '500',
-              color: '#000'
+              color: '#000',
+              boxShadow: isUserSelected && username !== 'Teacher'
+                ? '0 0 0 2px rgba(99, 102, 241, 0.2)'
+                : 'none'
             }}>
               {/* Fill bar */}
               <div style={{
@@ -200,7 +210,7 @@ const PollResults = ({ poll, username, handleNewQuestion }) => {
           boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
           zIndex: 1001
         }}>
-          <ChatBox username={username} participants={participants}/>
+          <ChatBox username={username} participants={participants} />
         </div>
       )}
     </div>
