@@ -16,8 +16,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   ssl: true, // ✅ ensure SSL/TLS is explicitly enabled
-  tlsAllowInvalidHostnames: true,         // ✅
-  tlsInsecure: true            
+  tlsAllowInvalidHostnames: true,         // ✅        
 }).then(() => console.log("MongoDB connected"));
 
 app.use(cors());
