@@ -2,7 +2,7 @@
 
 A live, interactive quiz and chat platform for classrooms and training sessions. Enables **real-time polling**, **live group discussions**, and **participant management**, all powered by **sockets**.
 
-### 🔗 Live Demo: [app-realtime-poll.vercel.app](https://app-realtime-poll.vercel.app)
+### 🔗 Live Demo: [app-realtime-poll.vercel.app](https://app-ui-deploy-dummy-y1vn.vercel.app)
 
 ---
 
